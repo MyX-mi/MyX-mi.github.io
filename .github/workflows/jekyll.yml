@@ -15,6 +15,10 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
+          name: Install dependencies
+        run: |
+          bundle config set path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
       - name: Build site
         run: bundle exec jekyll build -d _site
       - name: Deploy to GitHub Pages
